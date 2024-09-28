@@ -14,7 +14,7 @@ class AutoPush
      * should evaluating the code for pushing
      * 
      */
-    public $interval = 10;
+    public $interval = 900;
     
     
 
