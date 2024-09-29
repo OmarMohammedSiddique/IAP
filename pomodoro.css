@@ -37,7 +37,7 @@ progress::-webkit-progress-bar {
 }
 
 progress::-webkit-progress-value {
-  background-color: #fff;
+  background-color: #343333;
 }
 
 .timer {
