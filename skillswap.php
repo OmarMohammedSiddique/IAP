@@ -136,13 +136,8 @@
     <section class="u-clearfix u-palette-1-base u-section-1" id="sec-3bc9">
       <div class="u-clearfix u-sheet u-sheet-1">
         <div class="u-form u-palette-1-base u-form-1">
-          <form
-            action="https://forms.nicepagesrv.com/v2/form/process"
-            class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form"
-            source="email"
-            name="form"
-            style="padding: 10px"
-          >
+          <form action="signup_process.php" method="POST">
+
             <div
               class="u-form-group u-form-name u-form-partition-factor-2 u-form-group-1"
             >
