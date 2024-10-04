@@ -28,13 +28,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $selected_courses = implode(", ", $_POST['checkbox']); // Convert array to comma-separated string
     $teaching_courses = implode(", ", $_POST['checkbox-1']); // Convert array to comma-separated string
 
-    // Insert data into the users table
-    $sql = "INSERT INTO users (first_name, last_name, email, date_of_birth, phone, password, gender, selected_courses, teaching_courses) 
-            VALUES ('$first_name', '$last_name', '$email', '$date_of_birth', '$phone', '$password', '$gender', '$selected_courses', '$teaching_courses')";
+    // Generate a random verification code
+    $verification_code = rand(100000, 999999); // Generate a 6-digit code
 
-    // Execute the query
+    // Insert data into the users table
+    $sql = "INSERT INTO users (first_name, last_name, email, date_of_birth, phone, password, gender, selected_courses, teaching_courses, verification_code) 
+            VALUES ('$first_name', '$last_name', '$email', '$date_of_birth', '$phone', '$password', '$gender', '$selected_courses', '$teaching_courses', '$verification_code')";
+
     if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully!";
+        // Send verification code to the user's email
+        $to = $email;
+        $subject = "SkillSwap Email Verification";
+        $message = "Your verification code is: $verification_code";
+        $headers = "From: no-reply@skillswap.com";
+
+        if (mail($to, $subject, $message, $headers)) {
+            echo "New record created successfully! Please check your email for the verification code.";
+        } else {
+            echo "Failed to send verification email.";
+        }
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
